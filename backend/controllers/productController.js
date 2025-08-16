@@ -3,8 +3,10 @@ import Product from "../models/productModel.js";
 
 const addProduct = asyncHandler(async (req, res) => {
   try {
+    console.log("📥 Incoming product request...");
+    console.log("req.fields:", req.fields);
+    console.log("req.files:", req.files);
     const { name, description, price, category, quantity, brand } = req.fields;
-
     // Validation
     switch (true) {
       case !name:
@@ -23,9 +25,10 @@ const addProduct = asyncHandler(async (req, res) => {
 
     const product = new Product({ ...req.fields });
     await product.save();
+    console.log("✅ Product created:", product);
     res.json(product);
   } catch (error) {
-    console.error(error);
+    console.error("❌ Error in addProduct:", error);
     res.status(400).json(error.message);
   }
 });
