@@ -20,13 +20,13 @@ connectDB();
 
 const app = express();
 
-app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://YOUR-SUBDOMAIN.infinityfreeapp.com" // change this!
-  ],
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: ["https://web-app-sooty-six.vercel.app"], // دومين الفرونت
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 
 
 app.use(express.json());
